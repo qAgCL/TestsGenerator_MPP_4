@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using TestsGeneratorLib;
 namespace TestGenerator
 {
     class Program
@@ -137,18 +138,10 @@ public void da12sda(){}
         }
         static void Main(string[] args)
         {
-            SyntaxTree syntaxTree = CSharpSyntaxTree.ParseText(textProgram);
-            CompilationUnitSyntax Root = syntaxTree.GetCompilationUnitRoot();
-            var namespaces = Root.ChildNodes().Where(namespac => namespac is NamespaceDeclarationSyntax);
-            foreach (NamespaceDeclarationSyntax namespac in namespaces)
-            {
-                List<string> das = new List<string>();
-                FindMethod(namespac, Root, ref das);
-                foreach (string str in das)
-                {
-                    Console.WriteLine(str);
-                }
-            }
+            List<string> inputFiles = new List<string>();
+            inputFiles.Add(@"D:\5 сем\СПП\test.cs");
+            string outputPath = @"D:\5 сем\СПП\Tests";
+            new FileGenerator().Generate(inputFiles, outputPath,2,2,2);
             Console.ReadLine();
         }
     }

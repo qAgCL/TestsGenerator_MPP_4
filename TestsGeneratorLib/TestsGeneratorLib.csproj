@@ -108,17 +108,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Tests.cs" />
     <Compile Include="TestsGenerator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\TestGenerator\TestGenerator.csproj">
-      <Project>{3a8329d7-1217-44bf-a91d-ef92a2f4f3ae}</Project>
-      <Name>TestGenerator</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

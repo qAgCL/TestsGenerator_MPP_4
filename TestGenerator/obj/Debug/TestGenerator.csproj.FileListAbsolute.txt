@@ -210,3 +210,7 @@ D:\5 сем\СПП\TestsGenerator\TestGenerator\TestGenerator\obj\Debug\TestGene
 D:\5 сем\СПП\TestsGenerator\TestGenerator\TestGenerator\obj\Debug\TestGenerator.csproj.CopyComplete
 D:\5 сем\СПП\TestsGenerator\TestGenerator\TestGenerator\obj\Debug\TestGenerator.exe
 D:\5 сем\СПП\TestsGenerator\TestGenerator\TestGenerator\obj\Debug\TestGenerator.pdb
+D:\5 сем\СПП\TestsGenerator\TestGenerator\TestGenerator\bin\Debug\System.Threading.Tasks.Dataflow.dll
+D:\5 сем\СПП\TestsGenerator\TestGenerator\TestGenerator\bin\Debug\TestsGeneratorLib.dll
+D:\5 сем\СПП\TestsGenerator\TestGenerator\TestGenerator\bin\Debug\TestsGeneratorLib.pdb
+D:\5 сем\СПП\TestsGenerator\TestGenerator\TestGenerator\bin\Debug\TestsGeneratorLib.dll.config

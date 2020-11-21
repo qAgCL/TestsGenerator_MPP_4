@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace TestGenerator
 {
-    namespace Test{
+    namespace Test
+    {
         class test
         {
             public int testProp { get; set; }
@@ -15,9 +16,16 @@ namespace TestGenerator
             {
 
             }
+            public void TestMeth2()
+            {
+
+            }
             public class shit
             {
-                int i;
+                public void TestMeth()
+                {
+
+                }
             }
         }
     }
@@ -25,7 +33,7 @@ namespace TestGenerator
     {
         class hias
         {
-            private void TestMeth()
+            public void TestMeth()
             {
 
             }

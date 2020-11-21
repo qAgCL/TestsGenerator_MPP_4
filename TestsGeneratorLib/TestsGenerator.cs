@@ -8,33 +8,19 @@ using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 namespace TestsGeneratorLib
 {
-    public class TestsGenerator
+    public static class TestsGenerator
     {
-        public void GenerateTests(string textProgram)
+        public static Tests[] GenerateTests(string textProgram)
         {
+            List<Tests> tests = new List<Tests>();
             SyntaxTree syntaxTree = CSharpSyntaxTree.ParseText(textProgram);
             CompilationUnitSyntax Root = syntaxTree.GetCompilationUnitRoot();
-            var usings = Root.Usings;
-            var namespaces = Root.DescendantNodes().Where(@namespace => @namespace is NamespaceDeclarationSyntax);
+            var namespaces = Root.ChildNodes().Where(@namespace => @namespace is NamespaceDeclarationSyntax);
             foreach (NamespaceDeclarationSyntax @namespace in namespaces)
             {
-                var classes = @namespace.DescendantNodes().Where(@class => @class is ClassDeclarationSyntax);
-                foreach (ClassDeclarationSyntax @class in classes)
-                {
-                    var members = @class.Members;
-                    foreach (MemberDeclarationSyntax member in members)
-                    {
-                        if (member is MethodDeclarationSyntax)
-                        {
-                            var method = (MethodDeclarationSyntax)member;
-                            var syntaxFactory = SyntaxFactory.CompilationUnit();
-                            syntaxFactory = syntaxFactory.AddUsings(SyntaxFactory.UsingDirective(SyntaxFactory.ParseName("NUnit.Framework")));
-                            syntaxFactory = syntaxFactory.AddUsings(usings.ToArray());
-                            syntaxFactory = syntaxFactory.AddUsings();
-                        }
-                    }
-                }
+                FindMethod(@namespace, Root, ref tests);
             }
+            return tests.ToArray();
         }
         private static string GetFullNameSpace(SyntaxNode @class)
         {
@@ -72,7 +58,7 @@ namespace TestsGeneratorLib
             }
             return testMethods.ToArray();
         }
-        static void FindMethod(SyntaxNode namespac, CompilationUnitSyntax root, ref List<string> Tests)
+        static void FindMethod(SyntaxNode namespac, CompilationUnitSyntax root, ref List<Tests> Tests)
         {
             var classes = namespac.ChildNodes().Where(@class => @class is ClassDeclarationSyntax);
             foreach (ClassDeclarationSyntax @class in classes)
@@ -103,7 +89,8 @@ namespace TestsGeneratorLib
                     TestClass = TestClass.AddMembers(TestMethodsGenerate(methods));
                     namespaceName = namespaceName.AddMembers(TestClass);
                     syntaxFactory = syntaxFactory.AddMembers(namespaceName);
-                    Tests.Add(syntaxFactory.NormalizeWhitespace().ToFullString());
+                    string fileName = GetFullNameSpace(@class)+"." + @class.Identifier.Text + ".Test.cs";
+                    Tests.Add(new Tests(fileName, syntaxFactory.NormalizeWhitespace().ToFullString()));
                 }
                 foreach (MemberDeclarationSyntax member in members)
                 {
