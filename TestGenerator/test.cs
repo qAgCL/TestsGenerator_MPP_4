@@ -4,9 +4,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TestGenerator
+namespace SimpleNamespace
 {
-    namespace Test
+    class SimpleClass
+    {
+        private void PrivateMeth() { }
+        public void VoidMeth(int k, float b) { }
+
+        public char CharMeth(string s)
+        {
+            return 'F';
+        }
+    }
+}
+namespace HarderNamespace
+{
+    namespace AbsractName
     {
         abstract class Person
         {
@@ -22,22 +35,78 @@ namespace TestGenerator
                 Console.WriteLine(Name);
             }
         }
-        
+
     }
-    namespace Huo
+    namespace InjectClass
     {
-        class hias
+        class ParanetClass
         {
-            public hias(int i,ICloneable tda) {
+            class ChildClass
+            {
+                public void VoidMeth() { }
+
+                public char CharMeth()
+                {
+                    return 'F';
+                }
             }
-            public void TestMeth(int i,int j)
+        }
+    }
+    namespace StaticName
+    {
+        static class StaticClass
+        {
+            public static void VoidMeth(bool Bool, int k)
             {
 
             }
 
-            public int TestMe1th(int i, int j)
+            public static bool BoolMeth(string s)
             {
-                return 0;
+                return true;
+            }
+        }
+        class TestClass { }
+        class ClassWithStaticMeth
+        {
+            public TestClass ClassMeth(int j)
+            {
+                return null;
+            }
+
+            public static int GetInt(float g, string asd)
+            {
+                return 322;
+            }
+        }
+    }
+    namespace InterfaceName
+    {
+        class TestClass { }
+        interface ITestInt { }
+        interface IMoreInt { }
+        class ClassWithInter
+        {
+            public ClassWithInter(int i, ITestInt testInt)
+            {
+            }
+            private void PrivateMeth() { }
+            public void VoidMeth(int k, float b, ITestInt test) { }
+
+            public char CharMeth(TestClass test)
+            {
+                return 'F';
+            }
+        }
+        class ClassWithTwoInter
+        {
+            public ClassWithTwoInter(int i, ITestInt testInt, IMoreInt moreInt)
+            {
+            }
+
+            public char CharMeth(TestClass test)
+            {
+                return 'F';
             }
         }
     }

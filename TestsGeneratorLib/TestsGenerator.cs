@@ -130,29 +130,33 @@ namespace TestsGeneratorLib
                 constructors.Add(member as ConstructorDeclarationSyntax);
             }
 
-            ConstructorDeclarationSyntax constructor = constructors.OrderBy( x => x.ParameterList.Parameters.Count).First();
-
-            ParameterSyntax[] parametrs = constructor.ParameterList.Parameters.ToArray();
-            string constString= "_" + @class.Identifier.Text + "UnderTest = new "+ @class.Identifier.Text+"(";
-            foreach (ParameterSyntax param in parametrs)
+            string constString = "_" + @class.Identifier.Text + "UnderTest = new " + @class.Identifier.Text + "(";
+            if (constructors.Count > 0)
             {
-               if (param.Type.ToString()[0] == 'I')
-               {
-                    fields.Add(
-                    GenerateField(
-                        SyntaxKind.PrivateKeyword,
-                        "_"+param.Identifier.Text+"Dependency",
-                        "Mock<"+param.Type.ToString()+">"));
-                    SetUp = SetUp.AddBodyStatements(GenerateMockClass(param.Type.ToString(), "_" + param.Identifier.Text + "Dependency"));
-                    constString += "_" + param.Identifier.Text + "Dependency.Object, ";
+                ConstructorDeclarationSyntax constructor = constructors.OrderBy(x => x.ParameterList.Parameters.Count).First();
+
+                ParameterSyntax[] parametrs = constructor.ParameterList.Parameters.ToArray();
+
+                foreach (ParameterSyntax param in parametrs)
+                {
+                    if (param.Type.ToString()[0] == 'I')
+                    {
+                        fields.Add(
+                        GenerateField(
+                            SyntaxKind.PrivateKeyword,
+                            "_" + param.Identifier.Text + "Dependency",
+                            "Mock<" + param.Type.ToString() + ">"));
+                        SetUp = SetUp.AddBodyStatements(GenerateMockClass(param.Type.ToString(), "_" + param.Identifier.Text + "Dependency"));
+                        constString += "_" + param.Identifier.Text + "Dependency.Object, ";
+                    }
+                    else
+                    {
+                        SetUp = SetUp.AddBodyStatements(GenerateVar(param.Type.ToString(), param.Identifier.Text));
+                        constString += param.Identifier.Text + ", ";
+                    }
                 }
-               else
-                { 
-                    SetUp = SetUp.AddBodyStatements(GenerateVar(param.Type.ToString(), param.Identifier.Text));
-                    constString += param.Identifier.Text+", ";
-                } 
+                constString = constString.Remove(constString.Length - 2, 1);
             }
-            constString = constString.Remove(constString.Length - 2, 1);
             constString += ");";
             SetUp = SetUp.AddBodyStatements(SyntaxFactory.ParseStatement(constString));
             fields.Add(SetUp);

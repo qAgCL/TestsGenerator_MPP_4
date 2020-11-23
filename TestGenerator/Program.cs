@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -139,9 +140,10 @@ public void da12sda(){}
         static void Main(string[] args)
         {
             List<string> inputFiles = new List<string>();
-            inputFiles.Add(@"D:\5 сем\СПП\test.cs");
-            string outputPath = @"D:\5 сем\СПП\Tests";
+            inputFiles.Add(@"..\..\test.cs");
+            string outputPath = @"..\..\GeneratedTests";
             new FileGenerator().Generate(inputFiles, outputPath,2,2,2);
+            Console.WriteLine("Done");
             Console.ReadLine();
         }
     }
