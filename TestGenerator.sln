@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestGenerator", "TestGenera
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestsGeneratorLib", "TestsGeneratorLib\TestsGeneratorLib.csproj", "{FC247BF8-DB3D-4A20-B3DA-C774AD37C271}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "UnitTests\UnitTests.csproj", "{22EB6FAF-89CE-4FC6-993F-18F693465C5A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{FC247BF8-DB3D-4A20-B3DA-C774AD37C271}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FC247BF8-DB3D-4A20-B3DA-C774AD37C271}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FC247BF8-DB3D-4A20-B3DA-C774AD37C271}.Release|Any CPU.Build.0 = Release|Any CPU
+		{22EB6FAF-89CE-4FC6-993F-18F693465C5A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{22EB6FAF-89CE-4FC6-993F-18F693465C5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{22EB6FAF-89CE-4FC6-993F-18F693465C5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{22EB6FAF-89CE-4FC6-993F-18F693465C5A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
