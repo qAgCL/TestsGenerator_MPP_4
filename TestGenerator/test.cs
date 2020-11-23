@@ -30,9 +30,14 @@ namespace TestGenerator
         {
             public hias(int i,ICloneable tda) {
             }
-            public void TestMeth()
+            public void TestMeth(int i,int j)
             {
 
+            }
+
+            public int TestMe1th(int i, int j)
+            {
+                return 0;
             }
         }
     }
