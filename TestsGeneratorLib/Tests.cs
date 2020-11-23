@@ -8,6 +8,7 @@ namespace TestsGeneratorLib
 {
     public class Tests
     {
+
         public string FileName { get; }
         public string TestCode { get; }
 

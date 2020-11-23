@@ -8,31 +8,28 @@ namespace TestGenerator
 {
     namespace Test
     {
-        class test
+        abstract class Person
         {
-            public int testProp { get; set; }
-            public int testFields;
-            public void TestMeth()
-            {
+            public string Name { get; set; }
 
+            public Person(string name)
+            {
+                Name = name;
             }
-            public void TestMeth2()
-            {
 
-            }
-            public class shit
+            public void Display()
             {
-                public void TestMeth()
-                {
-
-                }
+                Console.WriteLine(Name);
             }
         }
+        
     }
     namespace Huo
     {
         class hias
         {
+            public hias(int i,ICloneable tda) {
+            }
             public void TestMeth()
             {
 
